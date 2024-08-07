@@ -44,24 +44,19 @@ export default function UserButton({ user }: UserButtonProps) {
               <span>Settings</span>
             </Link>
           </DropdownMenuItem>
-  
+
           {user.role === 'admin' && <DropdownMenuItem asChild>
-                <Link href="/admin">
-                  <Lock className="mr-2 h-4 w-4" />
-                  Admin
-                </Link>
-              </DropdownMenuItem>}
+            <Link href="/admin">
+              <Lock className="mr-2 h-4 w-4" />
+              Admin
+            </Link>
+          </DropdownMenuItem>}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <form action={async () => {
-            "use server"
-            await signOut()
-          }}>
-            <button type="submit" className="flex w-full items-center">
-              <LogOut className="mr-2 h-4 w-4" /> Sign Out
-            </button>
-          </form>
+          <button onClick={() => signOut({ callbackUrl: "/" } as any)} type="submit" className="flex w-full items-center">
+            <LogOut className="mr-2 h-4 w-4" /> Sign Out
+          </button>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
